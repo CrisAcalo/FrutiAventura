@@ -20,8 +20,9 @@
           <li><a href="#inicio">Inicio</a></li>
           <li><a href="#la-cajita">La Cajita de 120g</a></li>
           <li><a href="#sabores">Trío de Sabores</a></li>
+          <li><a href="#nutricion">Semáforo Nutricional</a></li>
+          <li><a href="#aventura-ninos">Aventura Niños</a></li>
           <li><a href="#beneficios">Beneficios</a></li>
-          <li><a href="#pedir">Hacer un Pedido</a></li>
         </ul>
       </div>
 
@@ -38,12 +39,12 @@
       </div>
 
       <div class="footer__contact-col">
-        <h4 class="footer__heading">Atención Directa</h4>
+        <h4 class="footer__heading">Calidad Artesanal</h4>
         <p class="footer__contact-text">
-          ¿Tienes dudas o deseas pedidos al por mayor para eventos o regalos familiares?
+          Elaborado con amor en Ecuador a base de frutas seleccionadas. 100% natural y sin conservantes químicos.
         </p>
-        <a href="#pedir" class="btn btn-secondary btn-footer-cta">
-          Contactar por WhatsApp
+        <a href="#sabores" class="btn btn-secondary btn-footer-cta">
+          Descubrir los Sabores
         </a>
       </div>
     </div>

@@ -72,7 +72,11 @@ const selectFlavor = (id) => {
 </script>
 
 <template>
-  <section id="sabores" class="section flavors-section">
+  <section 
+    id="sabores" 
+    class="section flavors-section"
+    :style="{ backgroundColor: currentFlavor.bgColor }"
+  >
     <div class="container">
       <div class="section-title-wrap">
         <span class="section-badge section-badge--pink">
@@ -156,8 +160,8 @@ const selectFlavor = (id) => {
               >
                 <span>Ver Ficha Nutricional Completa</span>
               </button>
-              <a href="#pedir" class="btn btn-primary btn-flavor-action">
-                <span>Pedir este Trío</span>
+              <a href="#nutricion" class="btn btn-primary btn-flavor-action">
+                <span>Ver Propiedades Nutricionales</span>
               </a>
             </div>
           </div>
@@ -210,7 +214,9 @@ const selectFlavor = (id) => {
 <style scoped>
 .flavors-section {
   position: relative;
-  background-color: var(--brand-cream);
+  transition: background-color 350ms cubic-bezier(0.16, 1, 0.3, 1);
+  border-top: 1px solid rgba(19, 62, 43, 0.08);
+  border-bottom: 1px solid rgba(19, 62, 43, 0.08);
 }
 
 /* PESTAÑAS SELECTORAS */

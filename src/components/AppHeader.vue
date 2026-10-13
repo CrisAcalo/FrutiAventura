@@ -10,8 +10,7 @@ const navLinks = [
   { name: 'Trío de Sabores', href: '#sabores' },
   { name: 'Nutrición', href: '#nutricion' },
   { name: 'Aventura Niños', href: '#aventura-ninos' },
-  { name: 'Beneficios', href: '#beneficios' },
-  { name: 'Pedir', href: '#pedir' }
+  { name: 'Beneficios', href: '#beneficios' }
 ]
 
 const handleScroll = () => {
@@ -40,16 +39,6 @@ onUnmounted(() => {
     class="header" 
     :class="{ 'header--scrolled': isScrolled, 'header--menu-open': isMobileMenuOpen }"
   >
-    <!-- BARRA PROMOCIONAL INTEGRADA EN EL HEADER (SIN SOLAPAMIENTO) -->
-    <aside class="announcement-bar" :class="{ 'announcement-bar--hidden': isScrolled }" aria-label="Aviso promocional">
-      <div class="container announcement-bar__inner">
-        <span class="announcement-bar__text">
-          🎉 <strong>¡Pack Degustación FrutiAventura!</strong> 3 mini mermeladas de 40g en una sola caja
-        </span>
-        <a href="#pedir" class="announcement-bar__link" @click="closeMobileMenu">Pedir Ahora &rarr;</a>
-      </div>
-    </aside>
-
     <!-- BARRA PRINCIPAL DE NAVEGACIÓN -->
     <div class="nav-bar">
       <div class="container header__container">
@@ -81,8 +70,8 @@ onUnmounted(() => {
 
         <!-- BOTÓN CTA HEADER -->
         <div class="header__cta">
-          <a href="#pedir" class="btn btn-primary btn-header">
-            <span>Pedir Cajita</span>
+          <a href="#sabores" class="btn btn-primary btn-header">
+            <span>Ver Sabores</span>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M5 12h14"></path>
               <path d="m12 5 7 7-7 7"></path>
@@ -125,8 +114,8 @@ onUnmounted(() => {
           </li>
         </ul>
         <div class="nav-mobile__footer">
-          <a href="#pedir" class="btn btn-primary btn-block" @click="closeMobileMenu">
-            Pedir mi Cajita de 3 Sabores
+          <a href="#sabores" class="btn btn-primary btn-block" @click="closeMobileMenu">
+            Explorar los 3 Sabores
           </a>
           <p class="nav-mobile__note">¡Pequeños frascos, grandes sabores!</p>
         </div>
@@ -151,46 +140,6 @@ onUnmounted(() => {
 
 .header--scrolled {
   box-shadow: 0 4px 20px rgba(19, 62, 43, 0.08);
-}
-
-/* BARRA PROMOCIONAL */
-.announcement-bar {
-  background-color: var(--brand-green);
-  color: #FFFFFF;
-  font-size: var(--text-xs);
-  padding: 0.4rem 0;
-  text-align: center;
-  transition: max-height 300ms ease, opacity 250ms ease, padding 300ms ease;
-  max-height: 80px;
-  overflow: hidden;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.announcement-bar--hidden {
-  max-height: 0;
-  opacity: 0;
-  padding: 0;
-  border-bottom: none;
-}
-
-.announcement-bar__inner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-}
-
-.announcement-bar__text {
-  line-height: 1.3;
-}
-
-.announcement-bar__link {
-  color: var(--brand-yellow);
-  font-weight: bold;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  white-space: nowrap;
 }
 
 /* NAV-BAR */

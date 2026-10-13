@@ -146,7 +146,7 @@ const superFruits = [
           </button>
         </div>
 
-        <!-- DETALLE DINÁMICO DEL SÚPER PODER SELECCIONADO -->
+        <!-- DETALLE DINÁMICO DEL SÚPER PODER SELECCIONADO (DISEÑO MÓVIL PERFECCIONADO) -->
         <div 
           v-for="fruit in superFruits" 
           :key="fruit.id"
@@ -155,9 +155,11 @@ const superFruits = [
           :style="{ '--power-color': fruit.color, '--power-bg': fruit.bg, '--power-border': fruit.border }"
         >
           <div class="superpower-detail-top">
-            <span class="superpower-icon-lg">{{ fruit.icon }}</span>
-            <div>
-              <span class="superpower-badge">{{ fruit.badge }}</span>
+            <div class="superpower-icon-circle anim-bounce">
+              <span>{{ fruit.icon }}</span>
+            </div>
+            <div class="superpower-detail-text">
+              <span class="superpower-badge">✨ {{ fruit.badge }}</span>
               <h4 class="superpower-title">{{ fruit.power }}</h4>
               <p class="superpower-desc">{{ fruit.desc }}</p>
             </div>
@@ -165,13 +167,16 @@ const superFruits = [
 
           <div class="superpower-checklist">
             <div class="check-item">
-              <span>✅ <strong>Aprobado para loncheras escolares</strong></span>
+              <span class="check-icon-badge" aria-hidden="true">✓</span>
+              <span><strong>Aprobado para loncheras escolares</strong></span>
             </div>
             <div class="check-item">
-              <span>✅ <strong>Frasco hermético de 40g anti-derrames</strong></span>
+              <span class="check-icon-badge" aria-hidden="true">✓</span>
+              <span><strong>Frasco hermético de 40g anti-derrames</strong></span>
             </div>
             <div class="check-item">
-              <span>✅ <strong>Sin conservantes químicos ni colorantes</strong></span>
+              <span class="check-icon-badge" aria-hidden="true">✓</span>
+              <span><strong>Sin conservantes químicos ni colorantes</strong></span>
             </div>
           </div>
         </div>
@@ -401,25 +406,47 @@ const superFruits = [
   color: var(--brand-text-muted);
 }
 
-/* DETALLE DEL SÚPER PODER */
+/* DETALLE DEL SÚPER PODER - DISEÑO RESPONSIVO PERFECCIONADO */
 .superpower-detail-card {
   background-color: var(--power-bg);
-  border: 2px solid var(--power-border);
-  border-radius: var(--radius-lg);
-  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 2.5px solid var(--power-border);
+  border-radius: var(--radius-xl);
+  padding: clamp(1.25rem, 4vw, 2.5rem);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.07);
   animation: fadeIn 250ms ease-out;
 }
 
 .superpower-detail-top {
   display: flex;
-  align-items: flex-start;
-  gap: 1.25rem;
+  align-items: center;
+  gap: 1.5rem;
   margin-bottom: 1.5rem;
 }
 
-.superpower-icon-lg {
-  font-size: 3.5rem;
-  line-height: 1;
+@media (max-width: 600px) {
+  .superpower-detail-top {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+}
+
+.superpower-icon-circle {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  border: 3.5px solid var(--power-color);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.75rem;
+  flex-shrink: 0;
+}
+
+.superpower-detail-text {
+  flex: 1;
 }
 
 .superpower-badge {
@@ -429,16 +456,18 @@ const superFruits = [
   font-family: var(--font-display);
   font-size: var(--text-xs);
   font-weight: var(--font-weight-bold);
-  padding: 0.2rem 0.65rem;
+  padding: 0.35rem 0.9rem;
   border-radius: var(--radius-pill);
-  margin-bottom: 0.35rem;
-  border: 1px solid var(--power-border);
+  margin-bottom: 0.4rem;
+  border: 1.5px solid var(--power-border);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
 .superpower-title {
-  font-size: var(--text-xl);
+  font-size: clamp(1.35rem, 3.5vw, 1.85rem);
   color: var(--brand-green);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.45rem;
+  line-height: 1.2;
 }
 
 .superpower-desc {
@@ -447,25 +476,48 @@ const superFruits = [
   line-height: 1.6;
 }
 
+/* CHECKLIST DE BENEFICIOS */
 .superpower-checklist {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.65rem;
-  border-top: 1px dashed var(--power-border);
-  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border-top: 1.5px dashed var(--power-border);
+  padding-top: 1.25rem;
 }
 
-@media (min-width: 650px) {
+@media (min-width: 768px) {
   .superpower-checklist {
-    grid-template-columns: repeat(3, 1fr);
+    flex-direction: row;
+    justify-content: space-between;
   }
 }
 
 .check-item {
-  background-color: #FFFFFF;
-  padding: 0.65rem 0.85rem;
-  border-radius: var(--radius-sm);
-  font-size: 0.82rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 0.85rem 1.1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--power-border);
+  font-size: 0.9rem;
   color: var(--brand-green);
+  line-height: 1.35;
+  flex: 1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.check-icon-badge {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #22C55E;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: bold;
+  flex-shrink: 0;
 }
 </style>

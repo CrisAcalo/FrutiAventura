@@ -73,6 +73,10 @@
 <style scoped>
 .benefits-section {
   position: relative;
+  background: linear-gradient(180deg, #FFFDF8 0%, #FEF3C7 100%);
+  padding-top: clamp(3rem, 7vw, 5.5rem);
+  padding-bottom: clamp(3rem, 7vw, 5.5rem);
+  border-top: 1px solid rgba(251, 176, 36, 0.25);
 }
 
 .benefits-grid {

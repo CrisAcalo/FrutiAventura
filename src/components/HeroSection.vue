@@ -55,8 +55,8 @@
 
         <!-- Botones de Acción -->
         <div class="hero__actions">
-          <a href="#pedir" class="btn btn-primary btn-hero">
-            <span>Quiero mi FrutiAventura</span>
+          <a href="#la-cajita" class="btn btn-primary btn-hero">
+            <span>Conocer la Cajita</span>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M5 12h14"></path>
               <path d="m12 5 7 7-7 7"></path>
@@ -127,8 +127,8 @@
 <style scoped>
 .hero {
   position: relative;
-  padding-top: clamp(6.5rem, 12vw, 9.5rem);
-  padding-bottom: clamp(3.5rem, 8vw, 6.5rem);
+  padding-top: clamp(4.5rem, 8vw, 6.5rem);
+  padding-bottom: clamp(3rem, 7vw, 5.5rem);
   overflow: hidden;
 }
 
