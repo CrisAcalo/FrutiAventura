@@ -11,13 +11,23 @@
       <!-- COLUMNA DE TEXTO -->
       <div class="hero__content">
         <div class="hero__badges">
-          <span class="hero__badge hero__badge--pink">
-            <span class="hero__badge-dot"></span>
-            Mini mermeladas naturales
-          </span>
-          <span class="hero__badge hero__badge--green">
-            🇪🇨 Elaborado en Ecuador
-          </span>
+          <div class="hero__badge-art hero__badge-art--pink">
+            <span class="badge-art__icon" aria-hidden="true">🍓</span>
+            <div class="badge-art__text">
+              <span class="badge-art__tag">100% ARTESANAL</span>
+              <span class="badge-art__title">Mini mermeladas naturales</span>
+            </div>
+            <span class="badge-art__sparkle" aria-hidden="true">✨</span>
+          </div>
+
+          <div class="hero__badge-art hero__badge-art--green">
+            <span class="badge-art__icon" aria-hidden="true">🇪🇨</span>
+            <div class="badge-art__text">
+              <span class="badge-art__tag">ORIGEN ECUATORIANO</span>
+              <span class="badge-art__title">Elaborado en Ecuador</span>
+            </div>
+            <span class="badge-art__sparkle" aria-hidden="true">🌿</span>
+          </div>
         </div>
 
         <h1 class="hero__title">
@@ -121,6 +131,13 @@
         </div>
       </div>
     </div>
+
+    <!-- Onda orgánica hacia la siguiente sección oscura -->
+    <div class="wave-divider hero-wave-bottom" aria-hidden="true">
+      <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M0,0 C150,90 350,-40 500,45 C650,130 900,10 1200,50 L1200,120 L0,120 Z" fill="#133E2B"></path>
+      </svg>
+    </div>
   </section>
 </template>
 
@@ -128,8 +145,20 @@
 .hero {
   position: relative;
   padding-top: clamp(4.5rem, 8vw, 6.5rem);
-  padding-bottom: clamp(3rem, 7vw, 5.5rem);
+  padding-bottom: 0;
+  background: linear-gradient(175deg, #FFFDF8 0%, #FFF3D6 50%, #FFE9B8 100%);
   overflow: hidden;
+}
+
+.hero-wave-bottom {
+  margin-top: clamp(2rem, 5vw, 4rem);
+  line-height: 0;
+}
+
+.hero-wave-bottom svg {
+  display: block;
+  width: 100%;
+  height: clamp(40px, 6vw, 75px);
 }
 
 /* Manchas orgánicas de fondo */
@@ -191,45 +220,84 @@
 .hero__badges {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  align-items: center;
+  gap: 1rem;
   margin-bottom: var(--space-md);
 }
 
-.hero__badge {
+.hero__badge-art {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.35rem 0.85rem;
-  border-radius: var(--radius-pill);
+  gap: 0.75rem;
+  padding: 0.6rem 1.35rem 0.65rem 1.1rem;
   font-family: var(--font-display);
-  font-size: var(--text-xs);
-  font-weight: var(--font-weight-bold);
-  letter-spacing: 0.03em;
+  box-shadow: 0 10px 24px -4px rgba(0, 0, 0, 0.16);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+  cursor: default;
+  position: relative;
+  backdrop-filter: blur(8px);
 }
 
-.hero__badge--pink {
-  background-color: var(--brand-pink-light);
-  color: var(--brand-pink-badge);
+.hero__badge-art:hover {
+  transform: scale(1.05) rotate(0deg) !important;
+  box-shadow: 0 14px 28px -4px rgba(0, 0, 0, 0.24);
 }
 
-.hero__badge--green {
-  background-color: var(--brand-green-bg);
-  color: var(--brand-green-light);
-  border: 1px solid rgba(45, 106, 79, 0.2);
+.hero__badge-art--pink {
+  background: linear-gradient(135deg, #FF2E63 0%, #E60045 55%, #BD0038 100%);
+  color: #FFFFFF;
+  /* Forma orgánica asimétrica estilo gota / salpicadura de fruta */
+  border-radius: 46% 54% 68% 32% / 36% 62% 38% 64%;
+  transform: rotate(-3deg);
+  border: 2px solid rgba(255, 255, 255, 0.85);
 }
 
-.hero__badge-dot {
-  width: 8px;
-  height: 8px;
-  background-color: var(--brand-pink-badge);
-  border-radius: 50%;
-  display: inline-block;
-  animation: pulse-dot 2s infinite ease-in-out;
+.hero__badge-art--green {
+  background: linear-gradient(135deg, #0E3E29 0%, #175B3C 55%, #0B2B1D 100%);
+  color: #FFDE59;
+  /* Forma abstracta de guijarro botánico */
+  border-radius: 62% 38% 42% 58% / 54% 38% 62% 46%;
+  transform: rotate(2.5deg);
+  border: 2px solid rgba(255, 222, 89, 0.65);
 }
 
-@keyframes pulse-dot {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.3); opacity: 0.7; }
+.badge-art__icon {
+  font-size: 1.4rem;
+  line-height: 1;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
+}
+
+.badge-art__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.badge-art__tag {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hero__badge-art--pink .badge-art__tag {
+  color: #FFE4E8;
+}
+
+.hero__badge-art--green .badge-art__tag {
+  color: #A7F3D0;
+}
+
+.badge-art__title {
+  font-size: clamp(0.88rem, 1.8vw, 1.02rem);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
+}
+
+.badge-art__sparkle {
+  font-size: 0.95rem;
+  opacity: 0.9;
 }
 
 .hero__title {
@@ -277,10 +345,12 @@
   display: flex;
   align-items: center;
   gap: 0.65rem;
-  background: rgba(255, 255, 255, 0.7);
-  padding: 0.65rem 0.85rem;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  padding: 0.75rem 0.95rem;
   border-radius: var(--radius-md);
-  border: 1px solid rgba(19, 62, 43, 0.08);
+  border: none;
+  box-shadow: 0 8px 24px rgba(19, 62, 43, 0.06);
 }
 
 .hero__feature-icon {

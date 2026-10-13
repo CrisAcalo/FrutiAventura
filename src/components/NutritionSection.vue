@@ -44,47 +44,44 @@ const superFruits = [
 </script>
 
 <template>
-  <section id="nutricion" class="section nutrition-section">
-    <!-- Divisor decorativo ondulado superior -->
-    <div class="wave-divider" aria-hidden="true">
-      <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-        <path d="M0,0 C150,90 350,-40 500,45 C650,130 900,10 1200,50 L1200,120 L0,120 Z" fill="#FFFDF9"></path>
-      </svg>
-    </div>
+  <section id="nutricion" class="nutrition-section">
+    <!-- BLOQUE 1: SEMÁFORO NUTRICIONAL OFICIAL (100% FULL-WIDTH WHITE) -->
+    <div class="nutrition-block-white">
+      <div class="container">
+        <!-- TÍTULO DE LA SECCIÓN -->
+        <div class="section-title-wrap">
+          <span class="section-badge section-badge--green anim-wiggle">
+            🥗 Semáforo & Nutrición Infantil
+          </span>
+          <h2 class="section-title">¡Energía Natural para Pequeños Exploradores!</h2>
+          <p class="section-subtitle">
+            En FrutiAventura cuidamos lo que comen tus hijos. Solo fruta real cosechada en Ecuador, sin conservantes químicos, sin grasa y sin sal.
+          </p>
+        </div>
 
-    <div class="container nutrition-container">
-      <div class="section-title-wrap">
-        <span class="section-badge section-badge--green anim-wiggle">
-          🥗 Semáforo & Nutrición Infantil
-        </span>
-        <h2 class="section-title">¡Energía Natural para Pequeños Exploradores!</h2>
-        <p class="section-subtitle">
-          En FrutiAventura cuidamos lo que comen tus hijos. Solo fruta real cosechada en Ecuador, sin conservantes químicos, sin grasa y sin sal.
-        </p>
-      </div>
-
-      <!-- BANNER ILUSTRADO DE NUTRICIÓN CON ARTE -->
-      <div class="nutrition-hero-card">
-        <div class="nutrition-hero-img-wrap">
+        <!-- BANNER ILUSTRADO DE NUTRICIÓN (ANCHO COMPLETO EN EL CONTENEDOR, SIN CAJA EXTERNA) -->
+        <div class="nutrition-banner-img-wrap">
           <img 
             src="/assets/fruit-nutrition-banner.jpg" 
             alt="Personajes de frutas felices de FrutiAventura sosteniendo el cartel 100% natural en el campo"
-            class="nutrition-hero-img"
+            class="nutrition-banner-img"
             width="1200"
             height="675"
             loading="lazy"
           />
         </div>
-        <div class="nutrition-hero-banner">
+
+        <!-- ENCABEZADO Y TARJETAS DEL SEMÁFORO (FULL WIDTH WHITE) -->
+        <div class="nutrition-semaforo-wrap">
           <div class="banner-pill">
             <span>🌟 100% Fruta Natural Ecuatoriana</span>
           </div>
-          <h3>El Semáforo Nutricional Oficial de la Cajita</h3>
-          <p>
+          <h3 class="semaforo-main-title">El Semáforo Nutricional Oficial de la Cajita</h3>
+          <p class="semaforo-main-subtitle">
             Certificado transparente para que los padres elijan con total confianza y tranquilidad.
           </p>
 
-          <!-- SEMÁFORO INTERACTIVO DESTACADO -->
+          <!-- LAS 3 TARJETAS DEL SEMÁFORO CON BORDES INTERACTIVOS NÍTIDOS -->
           <div class="semaforo-cards-trio">
             <div class="semaforo-card semaforo-card--yellow">
               <div class="semaforo-circle semaforo-circle--yellow">
@@ -119,67 +116,87 @@ const superFruits = [
         </div>
       </div>
 
-      <!-- SUPERPODERES DE CADA FRUTA (INTERACTIVO) -->
-      <div class="superpowers-wrap">
-        <div class="superpowers-header">
-          <span class="superpowers-tag">⚡ Conoce los Súper Poderes</span>
-          <h3>¿Qué poder te da cada fruta de FrutiAventura?</h3>
-          <p>Toca a cada personaje para descubrir sus vitaminas secretas:</p>
-        </div>
+      <!-- ONDA ORGÁNICA ENTRE BLOQUE BLANCO Y BLOQUE MENTA -->
+      <div class="wave-divider wave-white-to-mint" aria-hidden="true">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path d="M0,0 C150,90 350,-40 500,45 C650,130 900,10 1200,50 L1200,120 L0,120 Z" fill="#EBF8F0"></path>
+        </svg>
+      </div>
+    </div>
 
-        <div class="superpowers-tabs" role="tablist" aria-label="Elegir fruta saludable">
-          <button
-            v-for="fruit in superFruits"
+    <!-- BLOQUE 2: SÚPER PODERES FRUTALES (100% FULL-WIDTH MENTA BOTÁNICO, SIN CARD BLANCA EXTERIOR) -->
+    <div class="nutrition-block-mint">
+      <div class="container">
+        <!-- CONTENEDOR TRANSPARENTE: SIN FONDO BLANCO, FLUYE DIRECTO EN EL MENTA -->
+        <div class="superpowers-wrap">
+          <div class="superpowers-header">
+            <span class="superpowers-tag">⚡ Conoce los Súper Poderes</span>
+            <h3>¿Qué poder te da cada fruta de FrutiAventura?</h3>
+            <p>Toca a cada personaje para descubrir sus vitaminas secretas:</p>
+          </div>
+
+          <!-- BOTONES CON BORDES VISIBLES POR SER OPCIONES DE INTERACCIÓN -->
+          <div class="superpowers-tabs" role="tablist" aria-label="Elegir fruta saludable">
+            <button
+              v-for="fruit in superFruits"
+              :key="fruit.id"
+              role="tab"
+              :aria-selected="activeSuperFruit === fruit.id"
+              class="superpower-btn"
+              :class="{ 'superpower-btn--active': activeSuperFruit === fruit.id }"
+              :style="{ '--btn-accent': fruit.color, '--btn-bg': fruit.bg }"
+              @click="activeSuperFruit = fruit.id"
+            >
+              <span class="superpower-btn__icon">{{ fruit.icon }}</span>
+              <div class="superpower-btn__text">
+                <strong>{{ fruit.name }}</strong>
+                <small>{{ fruit.heroName }}</small>
+              </div>
+            </button>
+          </div>
+
+          <!-- DETALLE DINÁMICO DEL SÚPER PODER SELECCIONADO (DISEÑO MÓVIL PERFECCIONADO) -->
+          <div 
+            v-for="fruit in superFruits" 
             :key="fruit.id"
-            role="tab"
-            :aria-selected="activeSuperFruit === fruit.id"
-            class="superpower-btn"
-            :class="{ 'superpower-btn--active': activeSuperFruit === fruit.id }"
-            :style="{ '--btn-accent': fruit.color, '--btn-bg': fruit.bg }"
-            @click="activeSuperFruit = fruit.id"
+            v-show="activeSuperFruit === fruit.id"
+            class="superpower-detail-card"
+            :style="{ '--power-color': fruit.color, '--power-bg': fruit.bg, '--power-border': fruit.border }"
           >
-            <span class="superpower-btn__icon">{{ fruit.icon }}</span>
-            <div class="superpower-btn__text">
-              <strong>{{ fruit.name }}</strong>
-              <small>{{ fruit.heroName }}</small>
+            <div class="superpower-detail-top">
+              <div class="superpower-icon-circle anim-bounce">
+                <span>{{ fruit.icon }}</span>
+              </div>
+              <div class="superpower-detail-text">
+                <span class="superpower-badge">✨ {{ fruit.badge }}</span>
+                <h4 class="superpower-title">{{ fruit.power }}</h4>
+                <p class="superpower-desc">{{ fruit.desc }}</p>
+              </div>
             </div>
-          </button>
-        </div>
 
-        <!-- DETALLE DINÁMICO DEL SÚPER PODER SELECCIONADO (DISEÑO MÓVIL PERFECCIONADO) -->
-        <div 
-          v-for="fruit in superFruits" 
-          :key="fruit.id"
-          v-show="activeSuperFruit === fruit.id"
-          class="superpower-detail-card"
-          :style="{ '--power-color': fruit.color, '--power-bg': fruit.bg, '--power-border': fruit.border }"
-        >
-          <div class="superpower-detail-top">
-            <div class="superpower-icon-circle anim-bounce">
-              <span>{{ fruit.icon }}</span>
-            </div>
-            <div class="superpower-detail-text">
-              <span class="superpower-badge">✨ {{ fruit.badge }}</span>
-              <h4 class="superpower-title">{{ fruit.power }}</h4>
-              <p class="superpower-desc">{{ fruit.desc }}</p>
-            </div>
-          </div>
-
-          <div class="superpower-checklist">
-            <div class="check-item">
-              <span class="check-icon-badge" aria-hidden="true">✓</span>
-              <span><strong>Aprobado para loncheras escolares</strong></span>
-            </div>
-            <div class="check-item">
-              <span class="check-icon-badge" aria-hidden="true">✓</span>
-              <span><strong>Frasco hermético de 40g anti-derrames</strong></span>
-            </div>
-            <div class="check-item">
-              <span class="check-icon-badge" aria-hidden="true">✓</span>
-              <span><strong>Sin conservantes químicos ni colorantes</strong></span>
+            <div class="superpower-checklist">
+              <div class="check-item">
+                <span class="check-icon-badge" aria-hidden="true">✓</span>
+                <span><strong>Aprobado para loncheras escolares</strong></span>
+              </div>
+              <div class="check-item">
+                <span class="check-icon-badge" aria-hidden="true">✓</span>
+                <span><strong>Frasco hermético de 40g anti-derrames</strong></span>
+              </div>
+              <div class="check-item">
+                <span class="check-icon-badge" aria-hidden="true">✓</span>
+                <span><strong>Sin conservantes químicos ni colorantes</strong></span>
+              </div>
             </div>
           </div>
         </div>
+      </div>
+
+      <!-- ONDA ORGÁNICA INFERIOR HACIA AVENTURA NIÑOS (CÁLIDO AMANECER) -->
+      <div class="wave-divider nutrition-wave-bottom" aria-hidden="true">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path d="M0,0 C150,90 350,-40 500,45 C650,130 900,10 1200,50 L1200,120 L0,120 Z" fill="#FFF5EB"></path>
+        </svg>
       </div>
     </div>
   </section>
@@ -187,53 +204,41 @@ const superFruits = [
 
 <style scoped>
 .nutrition-section {
-  background-color: #FFFDF9;
   position: relative;
-  padding-top: clamp(2rem, 5vw, 4rem);
-  padding-bottom: clamp(3rem, 6vw, 6rem);
+  overflow: hidden;
+  padding: 0;
 }
 
-.nutrition-container {
-  position: relative;
-  z-index: 1;
-}
-
-/* BANNER ILUSTRADO CON ARTE GENERADO */
-.nutrition-hero-card {
+/* ==========================================================================
+   BLOQUE 1: SEMÁFORO 100% FULL-WIDTH WHITE
+   ========================================================================== */
+.nutrition-block-white {
   background-color: #FFFFFF;
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  box-shadow: var(--shadow-lg);
-  border: 2px solid var(--brand-cream-dark);
-  margin-bottom: var(--space-2xl);
-  transition: transform var(--transition-normal);
-}
-
-.nutrition-hero-card:hover {
-  transform: translateY(-4px);
-}
-
-.nutrition-hero-img-wrap {
   width: 100%;
-  max-height: 440px;
-  overflow: hidden;
+  padding-top: clamp(2.5rem, 5vw, 4.5rem);
+  position: relative;
 }
 
-.nutrition-hero-img {
+.nutrition-banner-img-wrap {
+  width: 100%;
+  max-height: 480px;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  box-shadow: 0 16px 40px rgba(19, 62, 43, 0.08);
+  margin-bottom: clamp(2rem, 5vw, 3rem);
+}
+
+.nutrition-banner-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform var(--transition-slow);
+  display: block;
 }
 
-.nutrition-hero-card:hover .nutrition-hero-img {
-  transform: scale(1.02);
-}
-
-.nutrition-hero-banner {
-  padding: clamp(1.5rem, 4vw, 2.5rem);
-  background: linear-gradient(180deg, #FFFFFF 0%, #FAF5E9 100%);
+.nutrition-semaforo-wrap {
   text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .banner-pill {
@@ -248,24 +253,23 @@ const superFruits = [
   margin-bottom: 0.75rem;
 }
 
-.nutrition-hero-banner h3 {
+.semaforo-main-title {
   font-size: var(--text-2xl);
   color: var(--brand-green);
   margin-bottom: 0.5rem;
 }
 
-.nutrition-hero-banner p {
+.semaforo-main-subtitle {
   color: var(--brand-text-muted);
   max-width: 650px;
-  margin: 0 auto 1.75rem;
+  margin: 0 auto clamp(1.5rem, 4vw, 2.5rem);
   font-size: var(--text-base);
 }
 
-/* TARJETAS DEL SEMÁFORO NUTRICIONAL */
 .semaforo-cards-trio {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1rem;
+  gap: 1.25rem;
   text-align: left;
 }
 
@@ -279,26 +283,26 @@ const superFruits = [
   display: flex;
   align-items: flex-start;
   gap: 1rem;
-  background-color: #FFFFFF;
-  padding: 1.25rem;
+  padding: 1.35rem 1.25rem;
   border-radius: var(--radius-lg);
   border: 2px solid;
-  box-shadow: var(--shadow-sm);
-  transition: transform var(--transition-fast);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .semaforo-card:hover {
   transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
 
 .semaforo-card--yellow {
-  border-color: #FACC15;
   background-color: #FEFCE8;
+  border-color: #FACC15;
 }
 
 .semaforo-card--green {
-  border-color: #86EFAC;
   background-color: #F0FDF4;
+  border-color: #86EFAC;
 }
 
 .semaforo-circle {
@@ -321,13 +325,35 @@ const superFruits = [
   margin: 0;
 }
 
-/* SÚPER PODERES FRUTALES */
+.wave-white-to-mint {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  line-height: 0;
+}
+
+.wave-white-to-mint svg {
+  display: block;
+  width: 100%;
+  height: clamp(40px, 6vw, 75px);
+}
+
+/* ==========================================================================
+   BLOQUE 2: SÚPER PODERES 100% FULL-WIDTH MENTA BOTÁNICO
+   ========================================================================== */
+.nutrition-block-mint {
+  background: linear-gradient(165deg, #EBF8F0 0%, #D8F2E4 50%, #C8ECDA 100%);
+  width: 100%;
+  padding-top: clamp(1rem, 3vw, 2.5rem);
+  padding-bottom: 0;
+  position: relative;
+}
+
+/* CONTENEDOR TRANSPARENTE: SIN FONDO BLANCO NI SOMBRA ARTIFICIAL */
 .superpowers-wrap {
-  background-color: #FFFFFF;
-  border-radius: var(--radius-xl);
-  padding: clamp(1.5rem, 4vw, 3rem);
-  box-shadow: var(--shadow-md);
-  border: 1px solid var(--brand-cream-dark);
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
 }
 
 .superpowers-header {
@@ -361,19 +387,21 @@ const superFruits = [
 .superpowers-tabs {
   display: flex;
   justify-content: center;
-  gap: 0.75rem;
+  gap: 0.85rem;
   flex-wrap: wrap;
   margin-bottom: var(--space-lg);
 }
 
+/* BOTONES DE OPCIONES CON BORDES DEFINIDOS POR SER ELEMENTOS DE INTERACCIÓN */
 .superpower-btn {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.75rem 1.25rem;
+  padding: 0.8rem 1.4rem;
   border-radius: var(--radius-pill);
   background-color: #FFFFFF;
-  border: 2px solid var(--brand-cream-dark);
+  border: 2px solid rgba(19, 62, 43, 0.18);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
   cursor: pointer;
   transition: all var(--transition-fast);
   text-align: left;
@@ -382,12 +410,14 @@ const superFruits = [
 .superpower-btn:hover {
   transform: translateY(-2px);
   border-color: var(--btn-accent);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
 .superpower-btn--active {
   background-color: var(--btn-bg);
-  border-color: var(--btn-accent);
-  box-shadow: 0 6px 20px rgba(19, 62, 43, 0.1);
+  border: 2.5px solid var(--btn-accent);
+  box-shadow: 0 8px 22px rgba(19, 62, 43, 0.12);
+  transform: translateY(-2px);
 }
 
 .superpower-btn__icon {
@@ -406,13 +436,13 @@ const superFruits = [
   color: var(--brand-text-muted);
 }
 
-/* DETALLE DEL SÚPER PODER - DISEÑO RESPONSIVO PERFECCIONADO */
+/* DETALLE DEL SÚPER PODER - TARJETA INDIVIDUAL ELEGANTE */
 .superpower-detail-card {
   background-color: var(--power-bg);
-  border: 2.5px solid var(--power-border);
+  border: 2px solid var(--power-border);
   border-radius: var(--radius-xl);
   padding: clamp(1.25rem, 4vw, 2.5rem);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.07);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.06);
   animation: fadeIn 250ms ease-out;
 }
 
@@ -459,8 +489,8 @@ const superFruits = [
   padding: 0.35rem 0.9rem;
   border-radius: var(--radius-pill);
   margin-bottom: 0.4rem;
-  border: 1.5px solid var(--power-border);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--power-border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .superpower-title {
@@ -496,15 +526,15 @@ const superFruits = [
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  background-color: rgba(255, 255, 255, 0.9);
-  padding: 0.85rem 1.1rem;
+  background-color: #FFFFFF;
+  padding: 0.9rem 1.15rem;
   border-radius: var(--radius-md);
-  border: 1px solid var(--power-border);
+  border: 1.5px solid rgba(19, 62, 43, 0.1);
   font-size: 0.9rem;
   color: var(--brand-green);
   line-height: 1.35;
   flex: 1;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
 }
 
 .check-icon-badge {
@@ -519,5 +549,16 @@ const superFruits = [
   font-size: 0.8rem;
   font-weight: bold;
   flex-shrink: 0;
+}
+
+.nutrition-wave-bottom {
+  margin-top: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 0;
+}
+
+.nutrition-wave-bottom svg {
+  display: block;
+  width: 100%;
+  height: clamp(40px, 6vw, 75px);
 }
 </style>

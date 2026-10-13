@@ -1,20 +1,20 @@
 <template>
-  <section id="beneficios" class="section section-alt benefits-section">
+  <section id="beneficios" class="section benefits-section-harvest">
     <div class="container">
-      <div class="section-title-wrap">
-        <span class="section-badge section-badge--yellow">
+      <div class="section-title-wrap section-title-wrap--gold">
+        <span class="section-badge section-badge--gold anim-wiggle">
           🌟 ¿Por qué elegir FrutiAventura?
         </span>
-        <h2 class="section-title">Pensado para las Familias y Amantes de la Fruta</h2>
-        <p class="section-subtitle">
+        <h2 class="section-title section-title--gold">Pensado para las Familias y Amantes de la Fruta</h2>
+        <p class="section-subtitle section-subtitle--gold">
           Creamos una alternativa diferente: deliciosa, artesanal y llena de variedad para transformar tus mañanas y meriendas en momentos especiales.
         </p>
       </div>
 
-      <!-- GRID DE BENEFICIOS -->
+      <!-- GRID DE BENEFICIOS (ESTILO GLASSMORPHISM MENOS BORDES / ATMOSFÉRICO) -->
       <div class="benefits-grid">
-        <div class="benefit-card">
-          <div class="benefit-card__icon-wrap benefit-card__icon-wrap--yellow">
+        <div class="benefit-card-glass">
+          <div class="benefit-card__icon-wrap">
             <span class="benefit-icon" aria-hidden="true">🎉</span>
           </div>
           <h3 class="benefit-card__title">3 Sabores en Una Sola Caja</h3>
@@ -23,8 +23,8 @@
           </p>
         </div>
 
-        <div class="benefit-card">
-          <div class="benefit-card__icon-wrap benefit-card__icon-wrap--green">
+        <div class="benefit-card-glass">
+          <div class="benefit-card__icon-wrap">
             <span class="benefit-icon" aria-hidden="true">🌿</span>
           </div>
           <h3 class="benefit-card__title">100% Ingredientes Naturales</h3>
@@ -33,8 +33,8 @@
           </p>
         </div>
 
-        <div class="benefit-card">
-          <div class="benefit-card__icon-wrap benefit-card__icon-wrap--pink">
+        <div class="benefit-card-glass">
+          <div class="benefit-card__icon-wrap">
             <span class="benefit-icon" aria-hidden="true">🎒</span>
           </div>
           <h3 class="benefit-card__title">Fácil y Práctico de Llevar</h3>
@@ -43,8 +43,8 @@
           </p>
         </div>
 
-        <div class="benefit-card">
-          <div class="benefit-card__icon-wrap benefit-card__icon-wrap--orange">
+        <div class="benefit-card-glass">
+          <div class="benefit-card__icon-wrap">
             <span class="benefit-icon" aria-hidden="true">🎨</span>
           </div>
           <h3 class="benefit-card__title">Empaque Alegre y Divertido</h3>
@@ -54,8 +54,8 @@
         </div>
       </div>
 
-      <!-- FRASE DESTACADA DEL PITCH -->
-      <div class="brand-banner">
+      <!-- FRASE DESTACADA DEL PITCH (ESTILO VIDRIO VERDE BOSQUE) -->
+      <div class="brand-banner brand-banner--forest">
         <div class="brand-banner__content">
           <span class="brand-banner__stars">⭐⭐⭐⭐⭐</span>
           <blockquote class="brand-banner__quote">
@@ -67,16 +67,55 @@
         </div>
       </div>
     </div>
+
+    <!-- Onda orgánica hacia el footer verde oscuro -->
+    <div class="wave-divider benefits-wave-bottom" aria-hidden="true">
+      <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M0,0 C150,90 350,-40 500,45 C650,130 900,10 1200,50 L1200,120 L0,120 Z" fill="#133E2B"></path>
+      </svg>
+    </div>
   </section>
 </template>
 
 <style scoped>
-.benefits-section {
+.benefits-section-harvest {
   position: relative;
-  background: linear-gradient(180deg, #FFFDF8 0%, #FEF3C7 100%);
-  padding-top: clamp(3rem, 7vw, 5.5rem);
-  padding-bottom: clamp(3rem, 7vw, 5.5rem);
-  border-top: 1px solid rgba(251, 176, 36, 0.25);
+  background: linear-gradient(155deg, #F59E0B 0%, #D97706 50%, #B45309 100%);
+  color: #FFFFFF;
+  padding-top: clamp(2.5rem, 5vw, 4.5rem);
+  padding-bottom: 0;
+  overflow: hidden;
+}
+
+.benefits-wave-bottom {
+  margin-top: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 0;
+}
+
+.benefits-wave-bottom svg {
+  display: block;
+  width: 100%;
+  height: clamp(40px, 6vw, 75px);
+}
+
+.section-title-wrap--gold {
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
+}
+
+.section-badge--gold {
+  background-color: #FFFFFF;
+  color: #B45309;
+  font-weight: 800;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+.section-title--gold {
+  color: #FFFFFF;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.section-subtitle--gold {
+  color: rgba(255, 255, 255, 0.92);
 }
 
 .benefits-grid {
@@ -98,76 +137,71 @@
   }
 }
 
-.benefit-card {
-  background-color: #FFFFFF;
-  border-radius: var(--radius-lg);
-  padding: clamp(1.5rem, 3vw, 2rem);
-  box-shadow: var(--shadow-sm);
-  border: 1px solid var(--brand-cream-dark);
-  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+/* TARJETAS GLASSMORPHISM CON "LESS BORDERS" */
+.benefit-card-glass {
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(14px);
+  border-radius: var(--radius-xl);
+  padding: clamp(1.5rem, 3vw, 2.2rem);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  transition: transform var(--transition-normal), background var(--transition-fast), box-shadow var(--transition-fast);
   display: flex;
   flex-direction: column;
 }
 
-.benefit-card:hover {
+.benefit-card-glass:hover {
   transform: translateY(-6px);
-  box-shadow: var(--shadow-md);
-  border-color: var(--brand-green-light);
+  background: rgba(255, 255, 255, 0.24);
+  box-shadow: 0 20px 42px rgba(0, 0, 0, 0.16);
 }
 
 .benefit-card__icon-wrap {
-  width: 54px;
-  height: 54px;
+  width: 58px;
+  height: 58px;
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: var(--space-md);
-}
-
-.benefit-card__icon-wrap--yellow {
-  background-color: var(--brand-yellow-light);
-}
-.benefit-card__icon-wrap--green {
-  background-color: var(--brand-green-bg);
-}
-.benefit-card__icon-wrap--pink {
-  background-color: var(--brand-pink-light);
-}
-.benefit-card__icon-wrap--orange {
-  background-color: var(--flavor-mandarina-bg);
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .benefit-icon {
-  font-size: 1.75rem;
+  font-size: 1.85rem;
 }
 
 .benefit-card__title {
-  font-size: 1.2rem;
-  color: var(--brand-green);
+  font-size: 1.25rem;
+  color: #FFFFFF;
   margin-bottom: 0.5rem;
   line-height: 1.3;
+  font-family: var(--font-display);
+  font-weight: 700;
 }
 
 .benefit-card__desc {
-  font-size: 0.92rem;
-  color: var(--brand-text-muted);
-  line-height: 1.5;
+  font-size: 0.94rem;
+  color: rgba(255, 255, 255, 0.92);
+  line-height: 1.55;
 }
 
 /* BANNER FRASE DESTACADA */
-.brand-banner {
-  background: linear-gradient(135deg, var(--brand-green) 0%, #1c523a 100%);
+.brand-banner--forest {
+  background: linear-gradient(145deg, #133E2B 0%, #0A2419 100%);
   border-radius: var(--radius-xl);
   padding: clamp(2rem, 5vw, 3.5rem) clamp(1.5rem, 4vw, 3rem);
   color: #FFFFFF;
   text-align: center;
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(251, 176, 36, 0.35);
   position: relative;
   overflow: hidden;
 }
 
-.brand-banner::before {
+.brand-banner--forest::before {
   content: '🍓 🥭 🍊';
   position: absolute;
   top: 10px;
@@ -190,6 +224,7 @@
   line-height: 1.35;
   max-width: 800px;
   margin: 0 auto 1rem;
+  color: #FFFFFF;
 }
 
 .brand-banner__author {

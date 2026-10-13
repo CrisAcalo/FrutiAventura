@@ -62,8 +62,8 @@
 .footer {
   background-color: var(--brand-green);
   color: #FFFFFF;
-  padding-top: clamp(3rem, 6vw, 4.5rem);
-  border-top: 4px solid var(--brand-yellow);
+  padding-top: clamp(2rem, 5vw, 3.5rem);
+  border-top: none;
 }
 
 .footer__container {

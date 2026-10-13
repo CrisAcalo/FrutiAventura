@@ -1,12 +1,5 @@
 <template>
   <section id="la-cajita" class="section pack-section-dark">
-    <!-- Onda decorativa superior -->
-    <div class="wave-divider" aria-hidden="true">
-      <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-        <path d="M0,0 C150,90 350,-40 500,45 C650,130 900,10 1200,50 L1200,120 L0,120 Z" fill="#133E2B"></path>
-      </svg>
-    </div>
-
     <div class="container pack-container">
       <div class="section-title-wrap section-title-wrap--dark">
         <span class="section-badge section-badge--gold anim-wiggle">
@@ -108,7 +101,7 @@
     </div>
 
     <!-- Onda decorativa inferior -->
-    <div class="wave-divider wave-divider--flip" aria-hidden="true">
+    <div class="wave-divider wave-divider--flip pack-wave-bottom" aria-hidden="true">
       <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
         <path d="M0,0 C150,90 350,-40 500,45 C650,130 900,10 1200,50 L1200,120 L0,120 Z" fill="#133E2B"></path>
       </svg>
@@ -122,7 +115,13 @@
   color: #FFFFFF;
   position: relative;
   padding-top: clamp(2rem, 5vw, 4rem);
-  padding-bottom: clamp(2rem, 5vw, 4rem);
+  padding-bottom: 0;
+  overflow: hidden;
+}
+
+.pack-wave-bottom {
+  margin-top: clamp(2rem, 5vw, 3.5rem);
+  line-height: 0;
 }
 
 .pack-container {

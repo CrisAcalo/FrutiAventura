@@ -66,6 +66,16 @@ const currentFlavor = computed(() => {
   return flavors.find(f => f.id === activeFlavorId.value) || flavors[0]
 })
 
+const flavorGradients = {
+  guayaba: 'linear-gradient(165deg, #FFE4E8 0%, #FFCCD5 40%, #FFF0F2 100%)',
+  mango: 'linear-gradient(165deg, #FEF3C7 0%, #FDE68A 40%, #FFFBEB 100%)',
+  mandarina: 'linear-gradient(165deg, #FFEDD5 0%, #FED7AA 40%, #FFF7ED 100%)'
+}
+
+const currentBackground = computed(() => {
+  return flavorGradients[activeFlavorId.value] || flavorGradients.mango
+})
+
 const selectFlavor = (id) => {
   activeFlavorId.value = id
 }
@@ -75,7 +85,7 @@ const selectFlavor = (id) => {
   <section 
     id="sabores" 
     class="section flavors-section"
-    :style="{ backgroundColor: currentFlavor.bgColor }"
+    :style="{ background: currentBackground }"
   >
     <div class="container">
       <div class="section-title-wrap">
@@ -208,22 +218,40 @@ const selectFlavor = (id) => {
         </div>
       </div>
     </div>
+
+    <!-- Onda orgánica hacia la siguiente sección (Nutrición) -->
+    <div class="wave-divider flavors-wave-bottom" aria-hidden="true">
+      <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M0,0 C150,90 350,-40 500,45 C650,130 900,10 1200,50 L1200,120 L0,120 Z" fill="#FFFFFF"></path>
+      </svg>
+    </div>
   </section>
 </template>
 
 <style scoped>
 .flavors-section {
   position: relative;
-  transition: background-color 350ms cubic-bezier(0.16, 1, 0.3, 1);
-  border-top: 1px solid rgba(19, 62, 43, 0.08);
-  border-bottom: 1px solid rgba(19, 62, 43, 0.08);
+  transition: background 400ms ease;
+  padding-bottom: 0;
+  overflow: hidden;
 }
 
-/* PESTAÑAS SELECTORAS */
+.flavors-wave-bottom {
+  margin-top: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 0;
+}
+
+.flavors-wave-bottom svg {
+  display: block;
+  width: 100%;
+  height: clamp(40px, 6vw, 75px);
+}
+
+/* PESTAÑAS SELECTORAS - ESTILO CAPSULA SIN BORDES RIGIDOS */
 .flavor-tabs {
   display: flex;
   justify-content: center;
-  gap: 0.75rem;
+  gap: 0.85rem;
   margin-bottom: var(--space-lg);
   flex-wrap: wrap;
 }
@@ -232,50 +260,53 @@ const selectFlavor = (id) => {
   display: flex;
   align-items: center;
   gap: 0.65rem;
-  padding: 0.75rem 1.4rem;
+  padding: 0.8rem 1.6rem;
   border-radius: var(--radius-pill);
-  background-color: #FFFFFF;
-  border: 2px solid var(--brand-cream-dark);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  border: none;
   font-family: var(--font-display);
   font-size: var(--text-base);
   font-weight: var(--font-weight-bold);
   color: var(--brand-text-muted);
-  transition: all var(--transition-fast);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), color var(--transition-fast);
   cursor: pointer;
 }
 
 .flavor-tab:hover {
-  border-color: var(--tab-accent);
+  background: rgba(255, 255, 255, 0.95);
   color: var(--brand-green);
   transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.09);
 }
 
 .flavor-tab--active {
-  background-color: var(--tab-bg);
-  border-color: var(--tab-accent);
+  background: #FFFFFF;
   color: var(--brand-green);
-  box-shadow: 0 4px 16px rgba(19, 62, 43, 0.08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
 }
 
 .flavor-tab__icon {
-  font-size: 1.25rem;
+  font-size: 1.35rem;
 }
 
 .flavor-tab__badge {
-  font-size: 0.72rem;
-  background-color: rgba(19, 62, 43, 0.08);
-  padding: 0.15rem 0.5rem;
+  font-size: 0.75rem;
+  background-color: rgba(19, 62, 43, 0.07);
+  padding: 0.2rem 0.55rem;
   border-radius: var(--radius-pill);
 }
 
-/* TARJETA PRINCIPAL DEL SABOR SELECCIONADO */
+/* TARJETA PRINCIPAL DEL SABOR SELECCIONADO - SIN BORDES, VIDRIO ESMERILADO ELEGANTE */
 .flavor-card {
-  background-color: #FFFFFF;
-  border: 2px solid var(--border-color);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(20px);
+  border: none;
   border-radius: var(--radius-xl);
   padding: clamp(1.5rem, 4vw, 3rem);
-  box-shadow: var(--shadow-lg);
-  transition: border-color var(--transition-normal);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.07);
   margin-bottom: var(--space-xl);
 }
 
@@ -305,9 +336,10 @@ const selectFlavor = (id) => {
   font-family: var(--font-display);
   font-size: var(--text-xs);
   font-weight: var(--font-weight-bold);
-  padding: 0.25rem 0.75rem;
+  padding: 0.35rem 0.85rem;
   border-radius: var(--radius-pill);
-  border: 1px solid var(--border-color);
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .flavor-card__gramaje {
@@ -351,9 +383,10 @@ const selectFlavor = (id) => {
   color: var(--dark-color);
   font-size: 0.82rem;
   font-weight: var(--font-weight-bold);
-  padding: 0.35rem 0.75rem;
+  padding: 0.4rem 0.85rem;
   border-radius: var(--radius-pill);
-  border: 1px solid var(--border-color);
+  border: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
 .ingredient-bullet {
@@ -364,12 +397,14 @@ const selectFlavor = (id) => {
   display: flex;
   align-items: center;
   gap: 0.65rem;
-  background-color: var(--brand-cream);
-  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  padding: 0.85rem 1.15rem;
   border-radius: var(--radius-md);
   margin-bottom: var(--space-lg);
   font-size: var(--text-sm);
   color: var(--brand-text-dark);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
 }
 
 .pairing-icon {
@@ -386,15 +421,15 @@ const selectFlavor = (id) => {
   font-size: var(--text-sm);
 }
 
-/* TARJETA VISUAL ESTILO EMPAQUE OSCURO (INSPIRADO EN LAS PIEZAS GRAFICAS) */
+/* TARJETA VISUAL ESTILO EMPAQUE OSCURO (INSPIRADO EN SECCIÓN 2) */
 .dark-product-card {
-  background: linear-gradient(145deg, #2A1F18 0%, #1A130E 100%);
+  background: linear-gradient(155deg, #241A13 0%, #150F0B 100%);
   border-radius: var(--radius-lg);
   padding: 1.75rem;
   color: #FFFFFF;
   text-align: center;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.25);
-  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   position: relative;
   overflow: hidden;
 }
@@ -485,24 +520,27 @@ const selectFlavor = (id) => {
 }
 
 .mini-flavor-card {
-  background-color: #FFFFFF;
-  border: 1px solid var(--brand-cream-dark);
-  border-radius: var(--radius-md);
-  padding: 1.25rem;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(12px);
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: 1.35rem 1.15rem;
   text-align: center;
   cursor: pointer;
-  transition: all var(--transition-fast);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
 }
 
 .mini-flavor-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--brand-green-light);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+  background: #FFFFFF;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.09);
 }
 
 .mini-flavor-card--active {
-  border-color: var(--brand-green);
-  background-color: var(--brand-green-bg);
+  background: #FFFFFF;
+  box-shadow: 0 14px 32px rgba(19, 62, 43, 0.12);
+  transform: translateY(-3px);
 }
 
 .mini-flavor-card__icon {
